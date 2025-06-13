@@ -1,6 +1,6 @@
-package com.ning.spring.classloader;
+package top.mcplugin.spring.classloader;
 
-import com.ning.spring.SpringLoader;
+import top.mcplugin.spring.SpringLoader;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,7 +70,7 @@ public class RySpringClassLoader extends URLClassLoader {
     @Override
     public Enumeration<URL> getResources(String name) throws IOException {
         List<Enumeration<URL>> list = new ArrayList<>();
-        boolean isScanPackage = "com/ning/".equalsIgnoreCase(name) || "aosuo/ning/".equalsIgnoreCase(name) || "cc/canyi/".equalsIgnoreCase(name);
+        boolean isScanPackage = "top/mcplugin/".equalsIgnoreCase(name);
 
         //先查当前插件
         Enumeration<URL> enumeration = currentLoader.getResources(name);

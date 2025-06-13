@@ -23,9 +23,9 @@ spring:
         pool-name: DataSourceHikariCP1
         register-mbeans: true
       jdbc-url: jdbc:mysql://..........:3306/rpg?useUnicode=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&autoReconnect=true&failOverReadOnly=false
+      username: root
       password: ''
       type: com.zaxxer.hikari.HikariDataSource
-      username: root
     playerdata:
       driver-class-name: com.mysql.jdbc.Driver
       hikari:
@@ -39,9 +39,25 @@ spring:
         pool-name: DataSourceHikariCP2
         register-mbeans: true
       jdbc-url: jdbc:mysql://.........:3306/player_data?useUnicode=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&autoReconnect=true&failOverReadOnly=false
+      username: root
       password: ''
       type: com.zaxxer.hikari.HikariDataSource
+    economy:
+      driver-class-name: com.mysql.jdbc.Driver
+      hikari:
+        auto-commit: true
+        connection-test-query: SELECT 1
+        connection-timeout: 30000
+        idle-timeout: 600000
+        max-lifetime: 1800000
+        maximum-pool-size: 80
+        minimum-idle: 20
+        pool-name: DataSourceHikariCP3
+        register-mbeans: true
+      jdbc-url: jdbc:mysql://.........:3306/economy?useUnicode=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&autoReconnect=true&failOverReadOnly=false
       username: root
+      password: ''
+      type: com.zaxxer.hikari.HikariDataSource
   redis:
     database: 15
     host: 127.0.0.1

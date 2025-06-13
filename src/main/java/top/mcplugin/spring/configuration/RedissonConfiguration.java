@@ -1,4 +1,4 @@
-package com.ning.spring.configuration;
+package top.mcplugin.spring.configuration;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;

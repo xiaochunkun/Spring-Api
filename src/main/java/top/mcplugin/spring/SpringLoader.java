@@ -1,4 +1,4 @@
-package com.ning.spring;
+package top.mcplugin.spring;
 
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties;
 import lombok.SneakyThrows;
@@ -14,8 +14,6 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import java.io.*;
 import java.lang.reflect.Field;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.Properties;
 
 /**
@@ -25,7 +23,7 @@ import java.util.Properties;
  */
 @EnableCaching
 @EnableAspectJAutoProxy(exposeProxy = true)
-@SpringBootApplication(scanBasePackages = {"com.ning", "aosuo.ning","top.maplex", "cc.canyi"})
+@SpringBootApplication(scanBasePackages = {"top.mcplugin"})
 public class SpringLoader {
 
     @SneakyThrows

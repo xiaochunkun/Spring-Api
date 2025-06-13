@@ -1,12 +1,12 @@
-package com.ning.spring.configuration;
+package top.mcplugin.spring.configuration;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.github.pagehelper.PageInterceptor;
-import com.ning.spring.Main;
-import com.ning.spring.configuration.datasource.DataSourceType;
-import com.ning.spring.configuration.datasource.DynamicDataSource;
+import top.mcplugin.spring.Main;
+import top.mcplugin.spring.configuration.datasource.DataSourceType;
+import top.mcplugin.spring.configuration.datasource.DynamicDataSource;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -35,7 +35,7 @@ import java.util.stream.Stream;
  * @date 2022/5/4 17:39
  */
 @Configuration
-@MapperScan(value = {"com.ning.**.mapper*", "aosuo.ning.**.mapper*", "cc.canyi.**.mapper*"})
+@MapperScan(value = {"top.mcplugin.**.mapper*"})
 public class MybatisPlusConfiguration {
     @Resource
     private Environment env;
@@ -121,9 +121,7 @@ public class MybatisPlusConfiguration {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(Main.getResourceLoader());
         try {
             List<String> mappers = new ArrayList<>();
-            mappers.add("classpath*:com/ning/**/xml/*Mapper.xml");
-            mappers.add("classpath*:aosuo/ning/**/xml/*Mapper.xml");
-            mappers.add("classpath*:cc/canyi/**/xml/*Mapper.xml");
+            mappers.add("classpath*:top/mcplugin/**/xml/*Mapper.xml");
             sqlSessionFactoryBean.setMapperLocations(mappers.stream().flatMap(location -> {
                 try {
                     return Stream.of(resolver.getResources(location));

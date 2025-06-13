@@ -1,6 +1,6 @@
-package com.ning.spring.api;
+package top.mcplugin.spring.api;
 
-import com.ning.spring.Main;
+import top.mcplugin.spring.Main;
 import org.springframework.context.ApplicationContext;
 
 /**

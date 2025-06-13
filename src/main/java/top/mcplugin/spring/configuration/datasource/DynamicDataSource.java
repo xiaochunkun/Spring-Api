@@ -1,4 +1,4 @@
-package com.ning.spring.configuration.datasource;
+package top.mcplugin.spring.configuration.datasource;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 

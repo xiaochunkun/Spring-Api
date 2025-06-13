@@ -1,6 +1,6 @@
-package com.ning.spring;
+package top.mcplugin.spring;
 
-import com.ning.spring.classloader.RySpringClassLoader;
+import top.mcplugin.spring.classloader.RySpringClassLoader;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
@@ -40,7 +40,7 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
         Enhancer enhancer = getEnhancer();
-        loader = (RySpringClassLoader) enhancer.create(new Class[]{List.class}, new Object[]{getAllPluginLoader()});
+        loader = (RySpringClassLoader) enhancer.create(new Class[]{List.class}, new Object[]{getAllPluginLoader(Main.class.getClassLoader())});
         resourceLoader = new DefaultResourceLoader(loader);
         applicationContext = SpringLoader.init(resourceLoader);
     }
@@ -65,6 +65,18 @@ public class Main extends JavaPlugin {
                 .filter(item -> isInPackage(arrays, item.getDescription().getMain()))
                 .map(item -> item.getClass().getClassLoader())
                 .collect(Collectors.toList());
+    }
+
+    @SneakyThrows
+    private static List<ClassLoader> getAllPluginLoader(ClassLoader currentPluginClassLoader) {
+        Field loaderField = currentPluginClassLoader.getClass().getDeclaredField("loader");
+        loaderField.setAccessible(true);
+        Object loader = loaderField.get(currentPluginClassLoader);
+
+        Class<?> loaderClass = loader.getClass();
+        Field loadersField = loaderClass.getDeclaredField("loaders");
+        loadersField.setAccessible(true);
+        return (List<ClassLoader>) loadersField.get(loader);
     }
 
     private static Boolean isInPackage(List<String> springScanPackages, String mainClass) {
@@ -117,7 +129,6 @@ public class Main extends JavaPlugin {
      * @param parameterTypes : 父类中的方法参数类型
      * @return 父类中的方法对象
      */
-
     private static Method getDeclaredMethod(Object object, String methodName, Class<?>... parameterTypes) {
         try {
             //先尝试获取普通方法
@@ -143,7 +154,6 @@ public class Main extends JavaPlugin {
      * @param fieldName : 父类中的属性名
      * @return 父类中的方法对象
      */
-
     private static Field getDeclaredMethod(Object object, String fieldName) {
         for (Class<?> clazz = object.getClass(); clazz != Object.class; clazz = clazz.getSuperclass()) {
             try {
