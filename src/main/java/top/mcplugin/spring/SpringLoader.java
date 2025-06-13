@@ -2,7 +2,6 @@ package top.mcplugin.spring;
 
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties;
 import lombok.SneakyThrows;
-import org.apache.commons.io.IOUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

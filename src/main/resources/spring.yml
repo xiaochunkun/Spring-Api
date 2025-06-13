@@ -4,7 +4,7 @@ mybatis-plus:
     db-config:
       id-type: assign_id
       table-underline: true
-  mapper-locations: classpath*:com/ning/**/xml/*Mapper.xml,classpath*:aosuo/ning/**/xml/*Mapper.xml
+  mapper-locations: top/mcplugin/**/xml/*Mapper.xml
 pagehelper:
   helper-dialect: mysql
   reasonable: true
